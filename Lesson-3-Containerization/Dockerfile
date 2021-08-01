@@ -6,13 +6,16 @@ WORKDIR /app
 # Copy source code to working directory
 COPY . flask_app/web.py /app/
 
+# copy nlib
+COPY . nlib /app/
+
 # Install packages from requirements.txt
 # hadolint ignore=DL3013
 RUN pip install --upgrade pip &&\
     pip install --trusted-host pypi.python.org -r requirements.txt
 
 ## Expose port no
-Expose port 80
+Expose 80
 
 # Run app.py at container launch
 CMD ["python", "web.py"]
